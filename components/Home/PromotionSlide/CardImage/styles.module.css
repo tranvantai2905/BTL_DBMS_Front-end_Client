@@ -1,0 +1,39 @@
+.wrapper__item {
+  position: relative;
+  color: #fff;
+  text-align: center;
+  width: 210px;
+  /* height: 425px; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 80%;
+  height: 370px;
+  object-fit: cover;
+}
+
+.name {
+  display: -webkit-box;
+  overflow: hidden;
+  font-weight: 300;
+  text-align: left;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  color: #818181;
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 8px;
+  -webkit-line-clamp: 1;
+}
+
+.price {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #000;
+}

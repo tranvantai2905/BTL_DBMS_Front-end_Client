@@ -1,0 +1,15 @@
+.bannerContainer {
+  margin-bottom: 1.5rem;
+  margin-top: 4rem;
+}
+
+.bannerText {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem !important;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  color: #444;
+  vertical-align: baseline;
+}

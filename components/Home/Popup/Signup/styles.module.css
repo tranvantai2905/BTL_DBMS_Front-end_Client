@@ -1,0 +1,33 @@
+.wrapInput {
+  width: 100%;
+  border-bottom: 1px solid #444;
+}
+
+.input {
+  border: none;
+  width: 80%;
+  padding: 30px 20px 10px 20px;
+  font-size: 1rem;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.buttonLogin {
+  padding: 10px 20px;
+  border: none;
+  background-color: var(--primary-red);
+  color: #fff;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  margin: 10px 0;
+  text-transform: uppercase;
+  margin-top: 30px;
+  min-width: 150px;
+}
+
+.buttonLogin:hover {
+  opacity: 0.9;
+}

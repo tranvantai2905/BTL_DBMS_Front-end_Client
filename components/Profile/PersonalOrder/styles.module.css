@@ -1,0 +1,46 @@
+.status {
+  text-align: center;
+  width: 20%;
+  padding: 10px 0;
+  /* transition: all 0.2s ease-in; */
+}
+
+.status:hover {
+  cursor: pointer;
+  color: var(--primary-red);
+}
+
+.red {
+  color: var(--primary-red);
+  border-bottom: 2px solid #ad2526;
+}
+
+.textHeader {
+  color: #444;
+  font-size: 0.9rem;
+}
+
+.button {
+  color: var(--primary-red);
+  background-color: #fff;
+  border: none;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  margin-right: 50px;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+}
+
+.button:hover {
+  background-color: var(--primary-red);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .status {
+    margin-right: 30px;
+  }
+}
