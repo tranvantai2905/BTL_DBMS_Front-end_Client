@@ -21,15 +21,6 @@ const RatingSection = ({
   return (
     <Box display="flex">
       <StyledRating name="read-only" value={point} readOnly />
-      <Typography
-        lineHeight={"22px"}
-        fontWeight={"300px"}
-        whiteSpace={"nowrap"}
-        color="#c9c9c9"
-        paddingLeft={"16px"}
-      >
-        {num} reviews
-      </Typography>
     </Box>
   );
 };

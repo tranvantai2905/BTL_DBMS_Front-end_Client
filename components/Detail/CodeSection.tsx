@@ -11,7 +11,7 @@ const CodeSection = ({ codeNum }: { codeNum: number }) => {
         paddingLeft={"16px"}
         textTransform={"uppercase"}
       >
-        {codeNum}
+        CODEID: {codeNum}
       </Typography>
     </Box>
   );

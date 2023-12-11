@@ -10,7 +10,13 @@ import {
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import UserInfo from "../UserInfo";
-import { addtoCart, createAnOrder, myCart, removeFromCart } from "@/pages/api";
+import {
+  addtoCart,
+  createAnOrder,
+  getProduct,
+  myCart,
+  removeFromCart,
+} from "@/pages/api";
 import { formatNumber } from "@/components/Detail/SizeSection";
 import { useRouter } from "next/router";
 import { AuthDialog } from "@/components/Home/Popup";
@@ -32,6 +38,24 @@ const OrderItem = () => {
     time: string;
     price: number;
     userId: number;
+  };
+
+  type Size = {
+    sizeName: string;
+    quantity: number;
+    productId: number;
+    price: number;
+  };
+
+  type Product = {
+    productId: number;
+    name: string;
+    description: string;
+    createdAt: string;
+    deleted: number;
+    sizes: Size[];
+    images: string[];
+    averageStar: number;
   };
 
   const handleCloseNoti = (
@@ -61,10 +85,46 @@ const OrderItem = () => {
   useEffect(() => {
     myCart()
       .then((res) => {
-        setCart(res?.data.data.items);
+        const initialCart = res?.data?.data?.items || [];
+        const productRequests = initialCart.map(async (item: any) => {
+          const res = await getProduct(item.productId);
+          return res?.data.data.product;
+        });
+
+        return Promise.all(productRequests).then(
+          (productDetails: Product[]) => {
+            console.log(productDetails, initialCart);
+            // Tạo một bản sao của cart và cập nhật thông tin mới
+            const updatedCart = initialCart.map((item: any, index: number) => {
+              const selectedSize = item.size; // Size bạn muốn tìm trong cart
+
+              // Tìm size tương ứng trong thông tin sản phẩm từ API getProduct
+              const foundSize = productDetails[index].sizes.find(
+                (size: any) => size.sizeName === selectedSize
+              );
+
+              if (foundSize) {
+                return {
+                  ...item,
+                  price: foundSize.price,
+                  image: productDetails[0].images[0], // Lấy ảnh đầu tiên trong mảng ảnh
+                  // Các trường khác nếu cần thiết
+                };
+              } else {
+                return item; // Nếu không tìm thấy size tương ứng, giữ nguyên item ban đầu
+              }
+            });
+            console.log(updatedCart);
+            return updatedCart;
+          }
+        );
+      })
+      .then((updatedCart) => {
+        // Cập nhật state của cart với thông tin mới
+        setCart(updatedCart);
       })
       .catch((err) => {
-        console.log(err.data);
+        console.error(err);
       });
   }, [change]);
   const [address, setAddress] = useState("");
@@ -265,10 +325,10 @@ const OrderItem = () => {
               })
                 .then((res) => {
                   setChange(change + 1);
-                  const query = { id: res?.data.orderId };
+                  const query = { id: res?.data.data.order.orderId };
                   if (payment == "Momo Pay") {
                     router.push({
-                      pathname: `${process.env.PAYMENT_URL}/${res?.data.orderId}`,
+                      pathname: `${process.env.PAYMENT_URL}/${res?.data.data.order.orderId}`,
                     });
                   } else {
                     router.push({

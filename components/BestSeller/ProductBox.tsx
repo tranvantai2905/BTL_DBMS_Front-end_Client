@@ -6,7 +6,7 @@ import { formatNumber } from "../Detail/SizeSection";
 interface ProductBoxProps {
   image: string;
   name: string;
-  price: string;
+  price: number;
 }
 const ProductBox = ({ image, name, price }: ProductBoxProps) => {
   return (
@@ -56,7 +56,7 @@ const ProductBox = ({ image, name, price }: ProductBoxProps) => {
           fontWeight={"400"}
           textAlign={{ xs: "center", md: "start" }}
         >
-          {formatNumber(price)}
+          {formatNumber(price) + " đ"}
         </Box>
       </Box>
     </Box>

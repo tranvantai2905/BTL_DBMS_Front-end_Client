@@ -93,10 +93,7 @@ const Result = ({ title, setTotal }: ResultProps) => {
                   <ProductBox
                     image={product.images[0]}
                     name={product.name}
-                    price={
-                      Math.min(...product.sizes.map((size) => size.price)) +
-                      " đ"
-                    }
+                    price={Math.min(...product.sizes.map((size) => size.price))}
                   />
                 </Link>
               </Grid>

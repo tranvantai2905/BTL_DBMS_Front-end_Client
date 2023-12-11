@@ -3,13 +3,9 @@ import CheckroomIcon from "@mui/icons-material/Checkroom";
 import { Dispatch, SetStateAction, useMemo, useState } from "react";
 import Tooltip from "@mui/material/Tooltip";
 
-export const formatNumber = function (number: number) {
-  // const parts = number.split(".");
-  // parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  // return parts.join(".");
-  return number;
+export const formatNumber = function (number: number): string {
+  return number.toLocaleString("vi-VN");
 };
-
 const SizeSection = ({
   selected,
   setSelected,
